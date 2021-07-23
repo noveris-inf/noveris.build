@@ -33,8 +33,12 @@ jobs:
         with:
           submodules: true
 
-      - name: "Super Linter"
-        uses: github/super-linter@v3
-        env:
-          DEFAULT_BRANCH: main
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: "Script Analyser"
+        shell: pwsh
+        run: |
+          $InformationPreference = "Continue"
+          $ErrorActionPreference = "Stop"
+
+          Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
+          Install-Module PSScriptAnalyzer -Scope CurrentUser
+          Invoke-ScriptAnalayzer -IncludeDefaultRules -Recurse .
