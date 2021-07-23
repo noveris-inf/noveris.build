@@ -31,7 +31,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          submodules: true
+          submodules: false
 
       - name: "Script Analyser"
         shell: pwsh
@@ -41,4 +41,4 @@ jobs:
 
           Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
           Install-Module PSScriptAnalyzer -Scope CurrentUser
-          Invoke-ScriptAnalayzer -IncludeDefaultRules -Recurse .
+          Invoke-ScriptAnalayzer -IncludeDefaultRules -Recurse -EnableExit .
