@@ -41,4 +41,5 @@ jobs:
 
           Set-PSRepository -Name "PSGallery" -InstallationPolicy Trusted
           Install-Module PSScriptAnalyzer -Scope CurrentUser
+          Import-Module PSScriptAnalyzer
           Invoke-ScriptAnalayzer -IncludeDefaultRules -Recurse -EnableExit .
